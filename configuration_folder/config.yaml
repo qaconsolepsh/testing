@@ -1,0 +1,8 @@
+# Empty project, start with a simple Upsun config below
+# See https://docs.upsun.com/anchors/app/configure/ for more information
+applications:
+  app:
+    type: python:3.12
+    web:
+      commands:
+        start: sleep infinity
