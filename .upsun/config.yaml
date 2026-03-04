@@ -1,0 +1,31 @@
+# Upsun configuration, generated using AI at: 2026-03-04T13:21:09Z
+# AI can make mistakes. Please modify this file to suit your needs.
+applications:
+  app:
+    type: nodejs:24
+    build:
+      flavor: none
+    hooks:
+      build: |
+        set -ex
+        npm install
+        npm run build
+      deploy: |
+        set -ex
+        npm run migrate
+    web:
+      commands:
+        start: npm start
+      locations:
+        /:
+          root: public
+          passthru: true
+          index: [index.html]
+          allow: true
+          scripts: true
+          expires: 5m
+          headers:
+            Access-Control-Allow-Origin: '*'
+          rules:
+            '^/robots.txt$':
+              expires: 2d
